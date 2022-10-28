@@ -33,6 +33,16 @@ public class BankAccountGraphQLController {
     public BankAccountResponseDTO addAccount(@Argument BankAccountRequestDTO bankAccount){
        return accountService.addAccount(bankAccount);
     }
+    @MutationMapping
+    public BankAccountResponseDTO updateAccount(@Argument String id,@Argument BankAccountRequestDTO bankAccount){
+        return accountService.updateAccount(id,bankAccount);
+    }
+    @MutationMapping
+    public boolean deleteAccount(@Argument String id,@Argument BankAccountRequestDTO bankAccount){
+       bankAccountRepository.deleteById(id);
+       return true;
+    }
+
 }
 /*
 record BankAccountDTO(Double balance, String type, String currency){
